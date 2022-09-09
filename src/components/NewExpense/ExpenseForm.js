@@ -1,7 +1,7 @@
 import react, { useState } from "react";
 // this returns the actual form that is going to be wrapped in a div
 import "./ExpenseForm.css";
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState(""); // used to store update title
   const [enteredAmount, setEnteredAmount] = useState(""); // used to store amount
   const [enteredDate, setEnteredDate] = useState(""); // used to store date
@@ -43,7 +43,8 @@ const ExpenseForm = () => {
       date: new Date(enteredDate),
     };
 
-    console.log(expenseData); // output object
+    props.onSaveExpenseData(expenseData); // custom listener event passed on through props on parent component, used to send data up
+
     setEnteredTitle(""); // reset entered inputs. needs a 2 way binding set up which is value attribute on <input>
     setEnteredAmount("");
     setEnteredDate("");
